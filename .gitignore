@@ -1,0 +1,27 @@
+# ===========================
+# 1. DATA & SECRETS (Excluded)
+# ===========================
+data/
+*.csv
+*.parquet
+*.zip
+.env
+
+# ===========================
+# 2. PYTHON & VIRTUAL ENV
+# ===========================
+# Your specific virtual env folder
+.venv311/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# ===========================
+# 3. ZENML & LOGS
+# ===========================
+.zen/
+logs/
+mlruns/
+*.log
+.DS_Store
