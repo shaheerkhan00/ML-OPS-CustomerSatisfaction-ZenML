@@ -5,11 +5,12 @@ from steps.model_train import model_train
 from steps.evaluation import evaluate_model
 
 
-@pipeline(enable_cache=True)
+@pipeline(enable_cache=False)
 def train_pipeline(data_path:str):
     df = ingest_df(data_path)
-    clean_df(df)
-    model_train(df)
-    evaluate_model()
-
+    X_train, X_test, y_train, y_test = clean_df(df)
+    trained_model = model_train(X_train, y_train, X_test, y_test)
+    mse, r2, rmse = evaluate_model(trained_model, X_test, y_test)
+    
+   
 
