@@ -133,12 +133,13 @@ def continous_deployment_pipeline(
     mse, r2, rmse = evaluate_model(trained_model, X_test, y_test)
     trigger_config = DeploymentTriggerConfig(min_accuracy=min_accuracy)
     deployment_decision = deployment_trigger(accuracy=mse)
-    mlflow_model_deployer_step(
-        model=trained_model,
-        deploy_decision=deployment_decision,
-        workers=workers,
-        timeout=timeout
-    )
+   
+   # mlflow_model_deployer_step(
+    #    model=trained_model,
+     #   deploy_decision=deployment_decision,
+      #  workers=workers,
+       # timeout=timeout
+    #)
     
 
 @pipeline(
