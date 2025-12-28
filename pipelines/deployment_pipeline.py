@@ -22,6 +22,31 @@ docker_settings = DockerSettings(required_integrations=[MLFLOW])
 class DeploymentTriggerConfig(BaseParameters):
     min_accuracy: float = 0.92
 
+
+@step
+def local_predictor(
+    model: object,  # This expects the generic sklearn model object
+    data: str       # JSON string data
+) -> np.ndarray:
+    """Runs prediction locally using the model object directly."""
+    # Convert JSON string back to dataframe
+    data = json.loads(data)
+    data.pop("columns")
+    data.pop("index")
+    columns_for_df = [
+        "payment_sequential", "payment_installments", "payment_value", "price",
+        "freight_value", "product_name_lenght", "product_description_lenght",
+        "product_photos_qty", "product_weight_g", "product_length_cm",
+        "product_height_cm", "product_width_cm",
+    ]
+    df = pd.DataFrame(data['data'], columns=columns_for_df)
+    
+    # Run prediction
+    predictions = model.predict(df)
+    return predictions
+
+
+
 @step(enable_cache=False)
 def dynamic_importer()->str:
     data = get_data_for_test()
@@ -134,12 +159,12 @@ def continous_deployment_pipeline(
     trigger_config = DeploymentTriggerConfig(min_accuracy=min_accuracy)
     deployment_decision = deployment_trigger(accuracy=mse)
    
-   # mlflow_model_deployer_step(
-    #    model=trained_model,
-     #   deploy_decision=deployment_decision,
-      #  workers=workers,
-       # timeout=timeout
-    #)
+    mlflow_model_deployer_step(
+        model=trained_model,
+        deploy_decision=deployment_decision,
+        workers=workers,
+        timeout=timeout
+    )
     
 
 @pipeline(

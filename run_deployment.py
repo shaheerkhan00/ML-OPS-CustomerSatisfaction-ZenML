@@ -2,13 +2,9 @@ from pipelines.deployment_pipeline import continous_deployment_pipeline,inferenc
 import click 
 from typing import cast
 from rich import print
-#from zenml.integrations.mlflow.steps import mlflow_model_deployer_step
 from zenml.integrations.mlflow.mlflow_utils import get_tracking_uri
 from zenml.integrations.mlflow.model_deployers.mlflow_model_deployer import MLFlowModelDeployer
 from zenml.integrations.mlflow.services import MLFlowDeploymentService
-
-
-
 
 DEPLOY = "deploy"
 PREDICT = "predict"

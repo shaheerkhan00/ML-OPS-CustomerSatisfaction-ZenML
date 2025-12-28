@@ -1,0 +1,18 @@
+# Ignore the virtual environment (Crucial fix for your error)
+.venv311/
+venv/
+env/
+
+# Ignore large data files
+data/
+
+# Ignore git history and secrets
+.git/
+.env
+.zen/
+
+# Ignore python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
