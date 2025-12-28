@@ -1,3 +1,7 @@
+[![ZenML](https://img.shields.io/badge/Orchestrated%20with-ZenML-purple?style=for-the-badge&logo=zenml)](https://zenml.io)
+[![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red?style=for-the-badge&logo=streamlit)](https://streamlit.io)
+[![MLflow](https://img.shields.io/badge/Tracking-MLflow-blue?style=for-the-badge&logo=mlflow)](https://mlflow.org)
+
 # End-to-End Customer Satisfaction MLOps Pipeline
 
 This project builds a production-ready MLOps pipeline to predict customer satisfaction scores for e-commerce orders. It uses [ZenML](https://zenml.io/) to orchestrate the pipeline, [MLflow](https://mlflow.org/) for experiment tracking, and [Streamlit](https://streamlit.io/) for the user interface.
